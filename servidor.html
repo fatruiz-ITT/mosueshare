@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Servidor</title>
+</head>
+<body>
+    <h1>Servidor WebSocket</h1>
+    <ul id="log"></ul>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8080');
+
+        ws.onmessage = (event) => {
+            const log = document.getElementById('log');
+            const li = document.createElement('li');
+            li.textContent = event.data;
+            log.appendChild(li);
+        };
+    </script>
+</body>
+</html>
