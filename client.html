@@ -1,0 +1,24 @@
+// Archivo: client.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cliente</title>
+</head>
+<body>
+    <h1>Cliente WebSocket</h1>
+    <script>
+        const ws = new WebSocket('ws://localhost:8080');
+
+        document.addEventListener('mousemove', (event) => {
+            const data = `Mouse: (${event.clientX}, ${event.clientY})`;
+            ws.send(data);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            const data = `Tecla presionada: ${event.key}`;
+            ws.send(data);
+        });
+    </script>
+</body>
+</html>
