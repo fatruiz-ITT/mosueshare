@@ -1,5 +1,6 @@
 // Archivo: servidor.js (Servidor WebSocket en Node.js)
 const WebSocket = require('ws');
+const robot = require('robotjs');
 
 const wss = new WebSocket.Server({ port: 8080 });
 
@@ -8,15 +9,19 @@ wss.on('connection', (ws) => {
     
     ws.on('message', (message) => {
         console.log(`Mensaje recibido: ${message}`);
-        // Reenvía los datos a todos los clientes conectados
-        wss.clients.forEach(client => {
-            if (client !== ws && client.readyState === WebSocket.OPEN) {
-                client.send(message);
+        
+        if (message.startsWith('Mouse:')) {
+            const coords = message.match(/\d+/g);
+            if (coords && coords.length === 2) {
+                const x = parseInt(coords[0], 10);
+                const y = parseInt(coords[1], 10);
+                robot.moveMouse(x, y);
             }
-        });
+        } else if (message.startsWith('Tecla presionada:')) {
+            const key = message.split(': ')[1];
+            robot.keyTap(key);
+        }
     });
 
     ws.on('close', () => console.log('Cliente desconectado'));
 });
-
-console.log('Servidor WebSocket corriendo en ws://localhost:8080');
