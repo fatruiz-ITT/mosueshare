@@ -7,16 +7,6 @@
 <body>
     <h1>Servidor WebSocket</h1>
     <ul id="log"></ul>
-
-    <script>
-        const ws = new WebSocket('ws://localhost:8080');
-
-        ws.onmessage = (event) => {
-            const log = document.getElementById('log');
-            const li = document.createElement('li');
-            li.textContent = event.data;
-            log.appendChild(li);
-        };
-    </script>
+    <script src="servidor.js"></script>
 </body>
 </html>
