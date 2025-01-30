@@ -7,18 +7,6 @@
 </head>
 <body>
     <h1>Cliente WebSocket</h1>
-    <script>
-        const ws = new WebSocket('ws://localhost:8080');
-
-        document.addEventListener('mousemove', (event) => {
-            const data = `Mouse: (${event.clientX}, ${event.clientY})`;
-            ws.send(data);
-        });
-
-        document.addEventListener('keydown', (event) => {
-            const data = `Tecla presionada: ${event.key}`;
-            ws.send(data);
-        });
-    </script>
+    <script src="cliente.js"></script>
 </body>
 </html>
