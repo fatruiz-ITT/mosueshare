@@ -5,7 +5,7 @@ const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on('connection', (ws) => {
     console.log('Cliente conectado');
-
+    
     ws.on('message', (message) => {
         console.log(`Mensaje recibido: ${message}`);
         // Reenvía los datos a todos los clientes conectados
@@ -20,5 +20,3 @@ wss.on('connection', (ws) => {
 });
 
 console.log('Servidor WebSocket corriendo en ws://localhost:8080');
-
-// Archivo: servidor.html
